@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movie_app/config/services/errors_handler.dart';
+import 'package:movie_app/src/core/services/errors_handler.dart';
 
 class CustomInterceptors extends Interceptor {
   @override

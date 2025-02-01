@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/config/theme/theme_instances.dart';
 
-import '../../../../../../config/constants/app_colors.dart';
-import '../../../../../../config/constants/app_string.dart';
+import '../../../../../core/utils/constants/app_colors.dart';
+import '../../../../../core/utils/constants/app_string.dart';
+import '../../../../../core/utils/theme/theme_instances.dart';
 import '../widgets/form.dart';
 
 class LoginView extends StatelessWidget {

@@ -5,8 +5,8 @@ import 'package:movie_app/src/features/auth_module/login/presentation/widgets/lo
 import 'package:movie_app/src/features/auth_module/login/presentation/widgets/password_text_form_field.dart';
 import 'package:movie_app/src/features/auth_module/login/presentation/widgets/sign_up_section.dart';
 
-import '../../../../../../config/constants/app_string.dart';
-import '../../../../../../config/theme/theme_instances.dart';
+import '../../../../../core/utils/constants/app_string.dart';
+import '../../../../../core/utils/theme/theme_instances.dart';
 import '../bloc/login_bloc.dart';
 
 class FormWidget extends StatelessWidget {

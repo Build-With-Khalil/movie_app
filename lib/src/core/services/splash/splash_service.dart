@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:movie_app/config/routes/routes_name.dart';
+
+import '../../routes/routes_name.dart';
 
 class SplashService {
   static void login(BuildContext context) {

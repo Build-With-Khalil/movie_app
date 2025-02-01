@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../../../config/component/custom_icon.dart';
-import '../../../../../../config/component/custom_text_form_field.dart';
-import '../../../../../../config/constants/app_colors.dart';
-import '../../../../../../config/constants/app_string.dart';
-import '../../../../../../config/theme/theme_instances.dart';
-import '../../../../../../config/validation/validation.dart';
+import '../../../../../core/component/custom_icon.dart';
+import '../../../../../core/component/custom_text_form_field.dart';
+import '../../../../../core/utils/constants/app_colors.dart';
+import '../../../../../core/utils/constants/app_string.dart';
+import '../../../../../core/utils/theme/theme_instances.dart';
+import '../../../../../core/utils/validation/validation.dart';
 import '../bloc/login_bloc.dart';
 
 class EmailTextFormField extends StatelessWidget {

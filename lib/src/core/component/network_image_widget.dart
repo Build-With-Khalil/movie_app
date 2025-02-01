@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app/config/component/loader_widget.dart';
+import 'package:movie_app/src/core/component/loader_widget.dart';
 
 class NetworkImageWidget extends StatelessWidget {
   final String imageUrl;

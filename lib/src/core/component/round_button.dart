@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../constants/app_colors.dart';
-import '../theme/theme_instances.dart';
+import '../utils/constants/app_colors.dart';
+import '../utils/theme/theme_instances.dart';
 
 class RoundedButton extends StatelessWidget {
   final VoidCallback onPressed;

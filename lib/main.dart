@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/config/routes/routes.dart';
+import 'package:movie_app/src/core/routes/routes.dart';
+import 'package:movie_app/src/core/routes/routes_name.dart';
 import 'package:movie_app/src/features/auth_module/login/presentation/bloc/login_bloc.dart';
-
-import 'config/routes/routes_name.dart';
 
 void main() {
   runApp(const MyApp());

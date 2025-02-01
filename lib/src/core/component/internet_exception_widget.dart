@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/src/core/utils/constants/app_colors.dart';
 
-import '../constants/app_colors.dart';
-import '../theme/theme_instances.dart';
+import '../utils/theme/theme_instances.dart';
 
 class InterNetExceptionWidget extends StatelessWidget {
   final VoidCallback onPress;

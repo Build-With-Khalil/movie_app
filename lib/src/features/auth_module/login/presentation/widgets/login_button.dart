@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../config/component/round_button.dart';
-import '../../../../../../config/constants/app_string.dart';
+import '../../../../../core/component/round_button.dart';
+import '../../../../../core/utils/constants/app_string.dart';
 import '../bloc/login_bloc.dart';
 
 class LogInButton extends StatelessWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/config/services/splash/splash_service.dart';
-import 'package:movie_app/config/theme/theme_instances.dart';
+
+import '../../../../core/services/splash/splash_service.dart';
+import '../../../../core/utils/theme/theme_instances.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
