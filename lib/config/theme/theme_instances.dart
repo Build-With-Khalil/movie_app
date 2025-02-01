@@ -7,6 +7,10 @@ class ThemeInstance {
   TextStyle? get headlineMedium => Theme.of(context).textTheme.headlineMedium;
   TextStyle? get headlineSmall => Theme.of(context).textTheme.headlineSmall;
 
+  TextStyle? get displayLarge => Theme.of(context).textTheme.displayLarge;
+  TextStyle? get displayMedium => Theme.of(context).textTheme.displayMedium;
+  TextStyle? get displaySmall => Theme.of(context).textTheme.displaySmall;
+
   TextStyle? get titleLarge => Theme.of(context).textTheme.titleLarge;
   TextStyle? get titleMedium => Theme.of(context).textTheme.titleMedium;
   TextStyle? get titleSmall => Theme.of(context).textTheme.titleSmall;

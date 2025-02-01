@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 
+import '../color/app_colors.dart';
+
 class RoundedButton extends StatelessWidget {
-  const RoundedButton({super.key});
+  final VoidCallback onPressed;
+  final double height;
+  final String title;
+
+  const RoundedButton({
+    super.key,
+    required this.onPressed,
+    this.height = 50,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 250,
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.teal,
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: Center(
-        child: Text(
-          "Login",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-          ),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        height: height,
+        decoration: BoxDecoration(
+          color: AppColors.buttonColor,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        child: Center(
+          child: Text(title),
         ),
       ),
     );
