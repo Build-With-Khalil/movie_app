@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/config/routes/routes.dart';
+import 'package:movie_app/src/features/auth_module/login/presentation/bloc/login_bloc.dart';
 
 import 'config/routes/routes_name.dart';
 
@@ -12,10 +14,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: RoutesName.splash,
-      onGenerateRoute: Routes.generateRoute,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginBloc(),
+        ),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: RoutesName.splash,
+        onGenerateRoute: Routes.generateRoute,
+      ),
     );
   }
 }

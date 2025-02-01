@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../color/app_colors.dart';
+import '../constants/app_colors.dart';
 import '../theme/theme_instances.dart';
 
 class InterNetExceptionWidget extends StatelessWidget {

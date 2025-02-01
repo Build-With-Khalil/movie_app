@@ -47,6 +47,8 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   freezed: ^2.5.8
   google_fonts: ^6.2.1
+  shared_preferences: ^2.5.1
+  iconsax: ^0.0.8
 
 dev_dependencies:
   flutter_test:

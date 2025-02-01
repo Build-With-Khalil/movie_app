@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/config/routes/routes_name.dart';
-import 'package:movie_app/view/views.dart';
+import 'package:movie_app/src/features/auth_module/login/presentation/pages/login_screen.dart';
+
+import '../../src/features/splash/presentation/pages/splash_screen.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,10 +14,6 @@ class Routes {
       case RoutesName.login:
         return MaterialPageRoute(
           builder: (context) => const LoginView(),
-        );
-      case RoutesName.home:
-        return MaterialPageRoute(
-          builder: (context) => const HomeView(),
         );
       default:
         return MaterialPageRoute(
