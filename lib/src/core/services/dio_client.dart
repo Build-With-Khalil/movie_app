@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:movie_app/src/core/services/errors_handler.dart';
 import 'package:movie_app/src/core/services/interceptor.dart';
 
+import '../utils/constants/app_urls.dart';
 import 'http_client.dart';
 
 class DioClient implements HttpClient {
@@ -10,7 +11,7 @@ class DioClient implements HttpClient {
   DioClient(this._dio) {
     /// Initialize Dio with base options
     _dio.options = BaseOptions(
-      baseUrl: 'https://jsonplaceholder.typicode.com',
+      baseUrl: AppUrls.baseUrl,
       connectTimeout: const Duration(seconds: 5),
       receiveTimeout: const Duration(seconds: 3),
       headers: {

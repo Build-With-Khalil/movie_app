@@ -10,16 +10,33 @@ import '../../../../../core/utils/theme/theme_instances.dart';
 import '../../../../../core/utils/validation/validation.dart';
 import '../bloc/login_bloc.dart';
 
-class PasswordTextFormField extends StatelessWidget {
-  const PasswordTextFormField({
-    super.key,
-  });
+class PasswordTextFormField extends StatefulWidget {
+  const PasswordTextFormField({super.key});
+
+  @override
+  _PasswordTextFormFieldState createState() => _PasswordTextFormFieldState();
+}
+
+class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
+  late TextEditingController passwordController;
+  late FocusNode passwordFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordController = TextEditingController();
+    passwordFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    passwordFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final passwordController = TextEditingController();
-    final passwordFocusNode = FocusNode();
-
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {

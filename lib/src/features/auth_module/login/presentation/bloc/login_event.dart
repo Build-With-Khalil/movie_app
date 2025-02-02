@@ -33,5 +33,4 @@ class PasswordChanged extends LoginEvent {
 
 class PasswordUnfocused extends LoginEvent {}
 
-class LoginButton extends LoginEvent {}
-
+class LoginApiCall extends LoginEvent {}

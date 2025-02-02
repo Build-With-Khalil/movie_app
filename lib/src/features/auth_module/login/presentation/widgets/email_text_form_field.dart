@@ -10,15 +10,33 @@ import '../../../../../core/utils/theme/theme_instances.dart';
 import '../../../../../core/utils/validation/validation.dart';
 import '../bloc/login_bloc.dart';
 
-class EmailTextFormField extends StatelessWidget {
-  const EmailTextFormField({
-    super.key,
-  });
+class EmailTextFormField extends StatefulWidget {
+  const EmailTextFormField({Key? key}) : super(key: key);
+
+  @override
+  _EmailTextFormFieldState createState() => _EmailTextFormFieldState();
+}
+
+class _EmailTextFormFieldState extends State<EmailTextFormField> {
+  late TextEditingController emailController;
+  late FocusNode emailFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    emailFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    emailFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final emailFocusNode = FocusNode();
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {

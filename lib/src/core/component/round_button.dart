@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../utils/constants/app_colors.dart';
-import '../utils/theme/theme_instances.dart';
 
 class RoundedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final double height, width;
-  final String title;
+  final Widget title;
   final Color textColor;
   const RoundedButton({
     super.key,
@@ -36,12 +35,7 @@ class RoundedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(25),
         ),
         child: Center(
-          child: Text(
-            title,
-            style: ThemeInstance(context).headlineMedium!.apply(
-                  color: textColor,
-                ),
-          ),
+          child: title,
         ),
       ),
     );

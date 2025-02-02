@@ -1,1 +1,1 @@
-enum PostAPIStatus { initial, loading, loaded, error }
+enum PostAPIStatus { initial, loading, success, error }
