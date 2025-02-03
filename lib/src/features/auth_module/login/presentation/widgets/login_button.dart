@@ -19,7 +19,7 @@ class LogInButton extends StatelessWidget {
   });
 
   final double height, width;
-  final formKey;
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class LogInButton extends StatelessWidget {
                         ),
                   ),
             onPressed: () {
-              if (formKey.currentState!.validate() ?? false) {
+              if (formKey.currentState!.validate()) {
                 context.read<LoginBloc>().add(LoginApiCall());
               }
             },

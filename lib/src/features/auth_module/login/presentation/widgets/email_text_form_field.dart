@@ -11,7 +11,7 @@ import '../../../../../core/utils/validation/validation.dart';
 import '../bloc/login_bloc.dart';
 
 class EmailTextFormField extends StatefulWidget {
-  const EmailTextFormField({Key? key}) : super(key: key);
+  const EmailTextFormField({super.key});
 
   @override
   _EmailTextFormFieldState createState() => _EmailTextFormFieldState();

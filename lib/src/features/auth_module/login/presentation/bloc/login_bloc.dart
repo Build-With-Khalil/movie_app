@@ -11,11 +11,14 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final LoginRepository loginRepository = LoginRepository();
+
   LoginBloc() : super(LoginState()) {
     on<EmailChanged>(_onEmailChange);
     on<PasswordChanged>(_onPasswordChange);
     on<LoginApiCall>(_onLoginApiCall);
+    on<VisibleEye>(_toggleObscure);
   }
+
   void _onEmailChange(
     EmailChanged event,
     Emitter<LoginState> emit,
@@ -77,5 +80,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         ),
       );
     });
+  }
+
+  void _toggleObscure(VisibleEye event, Emitter<LoginState> emit) {
+    emit(
+      state.copyWith(
+        isObscure: !state.isObscure,
+      ),
+    );
   }
 }

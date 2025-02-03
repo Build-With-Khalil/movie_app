@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:movie_app/src/core/response/api_response.dart';
 import 'package:movie_app/src/features/home_module/home/data/repositories/movies_repositories.dart';
 
@@ -29,7 +30,9 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
       final value = await moviesRepository.getApi(page: event.page);
       emit(state.copyWith(moviesModel: ApiResponse.completed(value)));
     } catch (e) {
-      print("Bloc Error: $e");
+      if (kDebugMode) {
+        print("Bloc Error: $e");
+      }
       emit(state.copyWith(moviesModel: ApiResponse.error(e.toString())));
     }
   }

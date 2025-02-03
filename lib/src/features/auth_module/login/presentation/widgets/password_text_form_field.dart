@@ -38,7 +38,9 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
-      buildWhen: (previous, current) => previous.password != current.password,
+      buildWhen: (previous, current) =>
+          previous.password != current.password ||
+          previous.isObscure != current.isObscure,
       builder: (context, state) {
         return CustomTextField(
           controller: passwordController,
@@ -52,11 +54,16 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
                 );
           },
           onFieldSubmitted: (value) {},
+          isObSecure: state.isObscure,
           prefixIcon: const CustomIcon(
             icon: Iconsax.lock,
           ),
           suffixIcon: CustomIcon(
-            icon: Iconsax.eye,
+            icon: state.isObscure ? Iconsax.eye_slash : Iconsax.eye,
+            onPressed: () {
+              context.read<LoginBloc>().add(VisibleEye());
+              print(state.isObscure);
+            },
           ),
           keyboardType: TextInputType.visiblePassword,
           focusNode: passwordFocusNode,

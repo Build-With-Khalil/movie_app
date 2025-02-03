@@ -9,7 +9,7 @@ class MoviesModel with _$MoviesModel {
     @Default('') String total,
     @Default(0) int page,
     @Default(0) int pages,
-    @JsonKey(name: 'tv_shows') @Default([]) List<TvShowsModel> tvShows,
+    @Default([]) List<TvShowsModel> tvShows,
   }) = _MoviesModel;
 
   factory MoviesModel.fromJson(Map<String, dynamic> json) =>
