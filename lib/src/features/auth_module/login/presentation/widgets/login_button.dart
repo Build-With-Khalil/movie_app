@@ -5,6 +5,7 @@ import 'package:movie_app/src/core/utils/theme/theme_instances.dart';
 
 import '../../../../../core/component/flush_bar.dart';
 import '../../../../../core/component/round_button.dart';
+import '../../../../../core/routes/routes_name.dart';
 import '../../../../../core/utils/constants/app_string.dart';
 import '../../../../../core/utils/enum/enums.dart';
 import '../bloc/login_bloc.dart';
@@ -30,6 +31,7 @@ class LogInButton extends StatelessWidget {
           FlushBarSuccessMessage(context).flushBarSuccessMessage(
             message: state.message.toString(),
           );
+          Navigator.pushNamed(context, RoutesName.home);
         }
         if (state.postApiStatus == PostAPIStatus.error) {
           FlushBarErrorMessage(context).flushBarErrorMessage(

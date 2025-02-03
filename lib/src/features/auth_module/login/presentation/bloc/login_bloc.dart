@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:movie_app/src/core/services/storage/token_storage.dart';
 
-import '../../../../../core/services/dio_client.dart';
 import '../../../../../core/utils/enum/enums.dart';
 import '../../data/repositories/login_repo.dart';
 
@@ -10,7 +10,7 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final LoginRepository loginRepository = LoginRepository(DioClient(Dio()));
+  final LoginRepository loginRepository = LoginRepository();
   LoginBloc() : super(LoginState()) {
     on<EmailChanged>(_onEmailChange);
     on<PasswordChanged>(_onPasswordChange);
@@ -48,8 +48,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         postApiStatus: PostAPIStatus.loading,
       ),
     );
-    await loginRepository.login(data).then((value) {
+    await loginRepository.login(data).then((value) async {
+      if (kDebugMode) {
+        print("Received Token: ${value.token}");
+      } // Debug print
+
       if (value.token.isNotEmpty) {
+        await TokenStorage.setToken(value.token);
         emit(
           state.copyWith(
             message: 'Login Successful',

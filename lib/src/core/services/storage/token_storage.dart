@@ -4,7 +4,7 @@ class TokenStorage {
   static const String _tokenKey = 'auth_token';
 
   /// Save token in SharedPreferences
-  static Future<void> saveToken(String token) async {
+  static Future<void> setToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_tokenKey, token);
   }

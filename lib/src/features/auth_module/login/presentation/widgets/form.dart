@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/src/features/auth_module/login/presentation/widgets/email_text_form_field.dart';
 import 'package:movie_app/src/features/auth_module/login/presentation/widgets/login_button.dart';
 import 'package:movie_app/src/features/auth_module/login/presentation/widgets/password_text_form_field.dart';
@@ -7,7 +6,6 @@ import 'package:movie_app/src/features/auth_module/login/presentation/widgets/si
 
 import '../../../../../core/utils/constants/app_string.dart';
 import '../../../../../core/utils/theme/theme_instances.dart';
-import '../bloc/login_bloc.dart';
 
 class FormWidget extends StatelessWidget {
   final double height;
@@ -21,52 +19,44 @@ class FormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// Focus Nodes
-    final emailFocusNode = FocusNode();
-    final passwordFocusNode = FocusNode();
-
     /// Create the formKey locally in the LoginView
     final formKey = GlobalKey<FormState>();
 
-    return BlocBuilder<LoginBloc, LoginState>(
-      builder: (context, state) {
-        return Form(
-          key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              /// Email CustomTextField
-              EmailTextFormField(),
-              SizedBox(height: height * 0.02),
+    return Form(
+      key: formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          /// Email CustomTextField
+          EmailTextFormField(),
+          SizedBox(height: height * 0.02),
 
-              /// Password CustomTextField
-              PasswordTextFormField(),
-              SizedBox(height: height * 0.02),
+          /// Password CustomTextField
+          PasswordTextFormField(),
+          SizedBox(height: height * 0.02),
 
-              /// Forgot Password
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  AppStrings.forgotPassword,
-                  style: ThemeInstance(context).titleLarge,
-                ),
-              ),
-              SizedBox(height: height * 0.02),
-
-              /// Sign In Button
-              LogInButton(
-                height: height,
-                width: width,
-                formKey: formKey,
-              ),
-              SizedBox(height: height * 0.02),
-
-              /// Sign Up Section
-              SignUpSection(height: height),
-            ],
+          /// Forgot Password
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              AppStrings.forgotPassword,
+              style: ThemeInstance(context).titleLarge,
+            ),
           ),
-        );
-      },
+          SizedBox(height: height * 0.02),
+
+          /// Sign In Button
+          LogInButton(
+            height: height,
+            width: width,
+            formKey: formKey,
+          ),
+          SizedBox(height: height * 0.02),
+
+          /// Sign Up Section
+          SignUpSection(height: height),
+        ],
+      ),
     );
   }
 }
