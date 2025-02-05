@@ -5,6 +5,8 @@ import 'package:movie_app/src/core/routes/routes_name.dart';
 import 'package:movie_app/src/features/auth_module/login/presentation/bloc/login_bloc.dart';
 import 'package:movie_app/src/features/home_module/home/data/repositories/movies_repositories.dart';
 import 'package:movie_app/src/features/home_module/home/presentation/bloc/movies_bloc.dart';
+import 'package:movie_app/src/features/todo/data/repositories/todo_repository.dart';
+import 'package:movie_app/src/features/todo/presentation/bloc/todo_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +24,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => MoviesBloc(MoviesRepository()),
+        ),
+        BlocProvider(
+          create: (context) => TodoBloc(
+            todoListApiRepository: TodoListApiRepository(),
+          ),
         ),
       ],
       child: const MaterialApp(

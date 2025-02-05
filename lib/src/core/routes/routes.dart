@@ -4,6 +4,8 @@ import 'package:movie_app/src/features/auth_module/login/presentation/pages/logi
 import 'package:movie_app/src/features/home_module/home/presentation/pages/home_screen.dart';
 
 import '../../features/splash/presentation/pages/splash_screen.dart';
+import '../../features/todo/presentation/pages/add_todo/add_todo_view.dart';
+import '../../features/todo/presentation/pages/todo/todo_view.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -19,6 +21,14 @@ class Routes {
       case RoutesName.home:
         return MaterialPageRoute(
           builder: (context) => const HomeScreen(),
+        );
+      case RoutesName.addTodoView:
+        return MaterialPageRoute(
+          builder: (context) => const AddTodoView(),
+        );
+      case RoutesName.todoView:
+        return MaterialPageRoute(
+          builder: (context) => const TodoView(),
         );
       default:
         return MaterialPageRoute(

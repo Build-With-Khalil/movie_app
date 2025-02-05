@@ -10,4 +10,12 @@ class AppColors {
   static const Color whiteColor = Colors.white;
   static const errorColor = Colors.red;
   static const Color grey = Colors.grey;
+  static const LinearGradient linearGradient = LinearGradient(
+    colors: [
+      AppColors.primary,
+      AppColors.secondary,
+    ],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
 }

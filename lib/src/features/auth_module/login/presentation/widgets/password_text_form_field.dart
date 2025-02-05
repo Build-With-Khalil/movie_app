@@ -42,7 +42,7 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
           previous.password != current.password ||
           previous.isObscure != current.isObscure,
       builder: (context, state) {
-        return CustomTextField(
+        return CustomTextFormField(
           controller: passwordController,
           hintText: AppStrings.password,
           hintStyle: ThemeInstance(context).titleMedium!.apply(
@@ -62,7 +62,6 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
             icon: state.isObscure ? Iconsax.eye_slash : Iconsax.eye,
             onPressed: () {
               context.read<LoginBloc>().add(VisibleEye());
-              print(state.isObscure);
             },
           ),
           keyboardType: TextInputType.visiblePassword,

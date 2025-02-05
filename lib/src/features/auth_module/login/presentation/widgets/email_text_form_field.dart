@@ -40,7 +40,7 @@ class _EmailTextFormFieldState extends State<EmailTextFormField> {
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
-        return CustomTextField(
+        return CustomTextFormField(
           controller: emailController,
           hintText: AppStrings.email,
           hintStyle: ThemeInstance(context).titleMedium!.apply(
