@@ -20,6 +20,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     on<DescriptionTodoEvent>(_descriptionTodoEvent);
     on<SubmitingTodoEvent>(_onSubmitingTodoEvent);
     on<EditTodoEvent>(_onEditTodoEvent);
+    on<DeleteTodoEvent>(_onDeleteTodoEvent);
   }
 
   Future<void> _fetchTodosList(
@@ -121,6 +122,33 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     } catch (e) {
       emit(state.copyWith(
           postAPIStatus: PostAPIStatus.error, message: e.toString()));
+    }
+  }
+
+  Future<void> _onDeleteTodoEvent(
+    DeleteTodoEvent event,
+    Emitter<TodoState> emit,
+  ) async {
+    try {
+      await todoListApiRepository.delete(event.id);
+
+      // Fetch updated list after deletion
+      final updatedTodos = await todoListApiRepository.getApi();
+
+      emit(
+        state.copyWith(
+          todoListModel: updatedTodos,
+          postAPIStatus: PostAPIStatus.success,
+          message: "Todo deleted successfully!",
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          postAPIStatus: PostAPIStatus.error,
+          message: "Failed to delete todo: $e",
+        ),
+      );
     }
   }
 }

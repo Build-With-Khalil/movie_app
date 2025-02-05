@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:movie_app/src/features/todo/presentation/bloc/todo_bloc.dart';
 
 import '../../widgets/description_text_form_field.dart';
 import '../../widgets/submit_button.dart';
@@ -18,7 +20,10 @@ class AddTodoView extends StatelessWidget {
             Iconsax.arrow_left_1,
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            context.read<TodoBloc>().add(FetchTodosListEvent());
+            Navigator.pop(context);
+          },
         ),
         title: Text(
           'Add Todo',

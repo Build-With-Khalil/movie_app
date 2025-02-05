@@ -28,6 +28,7 @@ class _TitleTextFormFieldState extends State<TitleTextFormField> {
   void dispose() {
     titleController.dispose();
     titleFocusNode.dispose();
+    titleController.clear();
     super.dispose();
   }
 

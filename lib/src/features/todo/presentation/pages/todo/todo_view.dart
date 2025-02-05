@@ -60,18 +60,38 @@ class TodoView extends StatelessWidget {
                 );
               }
               final todoList = state.todoListModel;
-              return ListView.builder(
-                itemCount: todoList.length,
-                itemBuilder: (context, index) {
-                  final todoItem = todoList[index];
-                  return TodoWidget(
-                    onDeletePressed: () {},
-                    onEditPressed: () => editTodoDialog(context, todoItem),
-                    id: todoItem.id.toString(),
-                    title: todoItem.title.toString(),
-                    description: todoItem.description.toString(),
-                  );
+              return RefreshIndicator(
+                onRefresh: () async {
+                  context.read<TodoBloc>().add(FetchTodosListEvent());
                 },
+                child: Visibility(
+                  visible: todoList.isNotEmpty,
+                  replacement: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  child: ListView.builder(
+                    itemCount: todoList.length,
+                    itemBuilder: (context, index) {
+                      final todoItem = todoList[index];
+                      return TodoWidget(
+                        onDeletePressed: () {
+                          context.read<TodoBloc>().add(
+                                DeleteTodoEvent(
+                                  todoItem.id.toString(),
+                                ),
+                              );
+                        },
+                        onEditPressed: () => editTodoDialog(
+                          context,
+                          todoItem,
+                        ),
+                        id: "${index + 1}",
+                        title: todoItem.title.toString(),
+                        description: todoItem.description.toString(),
+                      );
+                    },
+                  ),
+                ),
               );
 
             default:
@@ -81,7 +101,10 @@ class TodoView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
-        onPressed: () => Navigator.pushNamed(context, RoutesName.addTodoView),
+        onPressed: () => Navigator.pushNamed(
+          context,
+          RoutesName.addTodoView,
+        ),
         child: Icon(
           Icons.add,
           color: Theme.of(context).canvasColor,

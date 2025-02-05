@@ -39,8 +39,12 @@ class EditTodoEvent extends TodoEvent {
   );
 
   @override
-  List<Object> get props => [
-        id,
-        updatedTodo,
-      ];
+  List<Object> get props => [id, updatedTodo];
+}
+
+class DeleteTodoEvent extends TodoEvent {
+  final String id;
+  const DeleteTodoEvent(this.id);
+  @override
+  List<Object> get props => [id];
 }

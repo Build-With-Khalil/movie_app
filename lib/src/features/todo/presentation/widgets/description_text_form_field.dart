@@ -29,6 +29,7 @@ class _DescriptionTextFormFieldState extends State<DescriptionTextFormField> {
   void dispose() {
     descriptionController.dispose();
     descriptionFocusNode.dispose();
+    descriptionController.clear();
     super.dispose();
   }
 

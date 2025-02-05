@@ -11,7 +11,7 @@ class TodoListApiRepository {
       BaseOptions(
         baseUrl: AppUrls.baseUrl3,
         connectTimeout: const Duration(seconds: 5),
-        receiveTimeout: const Duration(seconds: 3),
+        receiveTimeout: const Duration(seconds: 1),
       ),
     );
     final response = await dio.get(
@@ -29,7 +29,7 @@ class TodoListApiRepository {
       BaseOptions(
         baseUrl: AppUrls.baseUrl3,
         connectTimeout: const Duration(seconds: 5),
-        receiveTimeout: const Duration(seconds: 3),
+        receiveTimeout: const Duration(seconds: 1),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -47,7 +47,7 @@ class TodoListApiRepository {
       BaseOptions(
         baseUrl: AppUrls.baseUrl3,
         connectTimeout: const Duration(seconds: 5),
-        receiveTimeout: const Duration(seconds: 3),
+        receiveTimeout: const Duration(seconds: 1),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -59,8 +59,26 @@ class TodoListApiRepository {
       {
         "title": updatedTodo.title,
         "description": updatedTodo.description,
-        "isCompleted": updatedTodo.isCompleted, // Ensure this is a boolean
+        "isCompleted": updatedTodo.isCompleted,
       },
+    );
+    return response.data;
+  }
+
+  Future<void> delete(String id) async {
+    final dio = DioService(
+      BaseOptions(
+        baseUrl: AppUrls.baseUrl3,
+        connectTimeout: const Duration(seconds: 5),
+        receiveTimeout: const Duration(seconds: 1),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      ),
+    );
+
+    final response = await dio.delete(
+      '${AppUrls.endPoint3}/$id',
     );
     return response.data;
   }
