@@ -10,14 +10,16 @@ part 'todo_state.dart';
 class TodoBloc extends Bloc<TodoEvent, TodoState> {
   final TodoListApiRepository todoListApiRepository;
 
-  TodoBloc({required this.todoListApiRepository})
-      : super(
+  TodoBloc({
+    required this.todoListApiRepository,
+  }) : super(
           TodoState(),
         ) {
     on<FetchTodosListEvent>(_fetchTodosList);
     on<TitleTodoEvent>(_titleTodoEvent);
     on<DescriptionTodoEvent>(_descriptionTodoEvent);
     on<SubmitingTodoEvent>(_onSubmitingTodoEvent);
+    on<EditTodoEvent>(_onEditTodoEvent);
   }
 
   Future<void> _fetchTodosList(
@@ -101,5 +103,24 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         );
       },
     );
+  }
+
+  Future<void> _onEditTodoEvent(
+      EditTodoEvent event, Emitter<TodoState> emit) async {
+    try {
+      await todoListApiRepository.edit(event.id, event.updatedTodo);
+      final updatedList = List<TodoListModel>.from(state.todoListModel);
+      final index = updatedList.indexWhere((todo) => todo.id == event.id);
+
+      if (index != -1) {
+        updatedList[index] = event.updatedTodo;
+      }
+
+      emit(state.copyWith(
+          todoListModel: updatedList, postAPIStatus: PostAPIStatus.success));
+    } catch (e) {
+      emit(state.copyWith(
+          postAPIStatus: PostAPIStatus.error, message: e.toString()));
+    }
   }
 }

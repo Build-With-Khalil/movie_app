@@ -11,7 +11,9 @@ class FetchTodosListEvent extends TodoEvent {}
 
 class TitleTodoEvent extends TodoEvent {
   final String title;
+
   const TitleTodoEvent(this.title);
+
   @override
   List<Object> get props => [title];
 }
@@ -26,3 +28,19 @@ class DescriptionTodoEvent extends TodoEvent {
 }
 
 class SubmitingTodoEvent extends TodoEvent {}
+
+class EditTodoEvent extends TodoEvent {
+  final String id;
+  final TodoListModel updatedTodo;
+
+  const EditTodoEvent(
+    this.id,
+    this.updatedTodo,
+  );
+
+  @override
+  List<Object> get props => [
+        id,
+        updatedTodo,
+      ];
+}

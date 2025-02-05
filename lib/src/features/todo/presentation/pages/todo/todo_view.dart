@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:movie_app/src/core/component/custom_icon.dart';
 import 'package:movie_app/src/core/utils/enum/enums.dart';
+import 'package:movie_app/src/features/todo/data/repositories/dialog_box.dart';
+import 'package:movie_app/src/features/todo/presentation/widgets/todo_widget.dart';
 
 import '../../../../../core/routes/routes_name.dart';
 import '../../bloc/todo_bloc.dart';
@@ -62,9 +64,12 @@ class TodoView extends StatelessWidget {
                 itemCount: todoList.length,
                 itemBuilder: (context, index) {
                   final todoItem = todoList[index];
-                  return ListTile(
-                    title: Text(todoItem.title.toString()),
-                    subtitle: Text(todoItem.description.toString()),
+                  return TodoWidget(
+                    onDeletePressed: () {},
+                    onEditPressed: () => editTodoDialog(context, todoItem),
+                    id: todoItem.id.toString(),
+                    title: todoItem.title.toString(),
+                    description: todoItem.description.toString(),
                   );
                 },
               );

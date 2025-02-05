@@ -41,4 +41,27 @@ class TodoListApiRepository {
     }
     return response.data;
   }
+
+  Future<void> edit(String id, TodoListModel updatedTodo) async {
+    final dio = DioService(
+      BaseOptions(
+        baseUrl: AppUrls.baseUrl3,
+        connectTimeout: const Duration(seconds: 5),
+        receiveTimeout: const Duration(seconds: 3),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      ),
+    );
+
+    final response = await dio.put(
+      '${AppUrls.endPoint3}/$id',
+      {
+        "title": updatedTodo.title,
+        "description": updatedTodo.description,
+        "isCompleted": updatedTodo.isCompleted, // Ensure this is a boolean
+      },
+    );
+    return response.data;
+  }
 }
