@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/src/features/todo/data/models/todo_model.dart';
-
-import '../../presentation/bloc/todo_bloc.dart';
 
 void editTodoDialog(BuildContext context, TodoListModel todo) {
   final TextEditingController titleController =
-  TextEditingController(text: todo.title);
+      TextEditingController(text: todo.title);
   final TextEditingController descriptionController =
-  TextEditingController(text: todo.description);
+      TextEditingController(text: todo.description);
 
   showDialog(
     context: context,
@@ -44,8 +41,6 @@ void editTodoDialog(BuildContext context, TodoListModel todo) {
 
               print("🔄 Updating todo: ${updatedTodo.toJson()}");
 
-              context.read<TodoBloc>().add(EditTodoEvent(todo.id.toString(), updatedTodo));
-
               Navigator.pop(context);
             },
             child: const Text('Save'),
@@ -55,4 +50,3 @@ void editTodoDialog(BuildContext context, TodoListModel todo) {
     },
   );
 }
-

@@ -39,7 +39,7 @@ class TodoListApiRepository {
     if (kDebugMode) {
       print("API Raw Response: ${response.data.toString()}");
     }
-    return response.data;
+    return TodoListModel.fromJson(response.data);
   }
 
   Future<void> edit(String id, TodoListModel updatedTodo) async {

@@ -1,31 +1,31 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/src/core/utils/constants/app_colors.dart';
-import 'package:movie_app/src/core/utils/theme/theme_instances.dart';
 
 import '../../../../core/component/round_button.dart';
-import '../bloc/todo_bloc.dart';
+import '../../../../core/utils/constants/app_colors.dart';
+import '../../../../core/utils/theme/theme_instances.dart';
 
 class SubmitButton extends StatelessWidget {
-  const SubmitButton({
-    super.key,
-  });
+  final String? title;
+  final String? description;
+
+  const SubmitButton({super.key, this.title, this.description});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TodoBloc, TodoState>(
-      builder: (context, state) {
-        return RoundedButton(
-          title: Text(
-            "Add",
-            style: ThemeInstance(context).titleLarge!.apply(
-                  color: AppColors.white,
-                ),
-          ),
-          onPressed: () {
-            BlocProvider.of<TodoBloc>(context).add(SubmitingTodoEvent());
-          },
-        );
+    return RoundedButton(
+      title: Text(
+        "Add",
+        style: ThemeInstance(context).titleLarge!.apply(
+              color: AppColors.white,
+            ),
+      ),
+      onPressed: () {
+        log("Title: ${title}");
+        log("Description: ${description}");
+        // context.read<TodoBloc>().add(AddTodoEvent(
+        //     title: title ?? "", description: description ?? ""));
       },
     );
   }

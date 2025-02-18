@@ -24,7 +24,7 @@ class Routes {
         );
       case RoutesName.addTodoView:
         return MaterialPageRoute(
-          builder: (context) => const AddTodoView(),
+          builder: (context) => AddTodoView(),
         );
       case RoutesName.todoView:
         return MaterialPageRoute(

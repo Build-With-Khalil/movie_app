@@ -1,41 +1,42 @@
 part of 'todo_bloc.dart';
 
 class TodoState extends Equatable {
-  final List<TodoListModel> todoListModel;
-  final PostAPIStatus postAPIStatus;
-  final String message, title, description;
+  final List<TodoListModel>? todoList;
+  final bool listLoader, submitLoader;
+  final String listError, submitError;
 
-  /// Todo state
   const TodoState({
-    this.title = '',
-    this.description = '',
-    this.postAPIStatus = PostAPIStatus.initial,
-    this.message = '',
-    this.todoListModel = const <TodoListModel>[],
+    this.todoList = const [],
+    this.listLoader = false,
+    this.submitLoader = false,
+    this.listError = "",
+    this.submitError = "",
   });
 
   TodoState copyWith({
-    PostAPIStatus? postAPIStatus,
-    String? message,
-    String? title,
-    String? description,
-    List<TodoListModel>? todoListModel,
+    List<TodoListModel>? todoList,
+    bool? listLoader,
+    bool? submitLoader,
+    String? listError,
+    String? submitError,
   }) {
     return TodoState(
-      postAPIStatus: postAPIStatus ?? this.postAPIStatus,
-      message: message ?? this.message,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      todoListModel: todoListModel ?? this.todoListModel,
+      todoList: todoList ?? this.todoList,
+      listLoader: listLoader ?? this.listLoader,
+      submitLoader: submitLoader ?? this.submitLoader,
+      listError: listError ?? this.listError,
+      submitError: submitError ?? this.submitError,
     );
   }
 
   @override
   List<Object?> get props => [
-        postAPIStatus,
-        message,
-        title,
-        description,
-        todoListModel,
+        todoList,
+        listLoader,
+        submitLoader,
+        listError,
+        submitError,
       ];
 }
+
+final class TodoInitial extends TodoState {}

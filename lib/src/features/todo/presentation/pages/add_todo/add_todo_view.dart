@@ -3,12 +3,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:movie_app/src/features/todo/presentation/bloc/todo_bloc.dart';
 
-import '../../widgets/description_text_form_field.dart';
-import '../../widgets/submit_button.dart';
-import '../../widgets/title_text_form_field.dart';
+import '../../../../../core/component/round_button.dart';
+import '../../../../../core/utils/constants/app_colors.dart';
+import '../../../../../core/utils/theme/theme_instances.dart';
+import '../../widgets/custom_text_field.dart';
 
-class AddTodoView extends StatelessWidget {
+class AddTodoView extends StatefulWidget {
   const AddTodoView({super.key});
+
+  @override
+  State<AddTodoView> createState() => _AddTodoViewState();
+}
+
+class _AddTodoViewState extends State<AddTodoView> {
+  final TextEditingController titleController = TextEditingController();
+
+  final TextEditingController descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +30,7 @@ class AddTodoView extends StatelessWidget {
             Iconsax.arrow_left_1,
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
-          onPressed: () {
-            context.read<TodoBloc>().add(FetchTodosListEvent());
-            Navigator.pop(context);
-          },
+          onPressed: () {},
         ),
         title: Text(
           'Add Todo',
@@ -40,9 +47,31 @@ class AddTodoView extends StatelessWidget {
         child: Column(
           spacing: 8.0,
           children: <Widget>[
-            TitleTextFormField(),
-            DescriptionTextFormField(),
-            SubmitButton(),
+            CustomTextField(
+              controller: titleController,
+              hintText: "Title",
+              minLine: 1,
+              maxLine: 1,
+              onChanged: (value) {},
+            ),
+            CustomTextField(
+              controller: descriptionController,
+              hintText: "Description",
+              onChanged: (value) {},
+            ),
+            RoundedButton(
+              title: Text(
+                "Add",
+                style: ThemeInstance(context).titleLarge!.apply(
+                      color: AppColors.white,
+                    ),
+              ),
+              onPressed: () {
+                context.read<TodoBloc>().add(AddTodoEvent(
+                    title: titleController.text ?? "",
+                    description: descriptionController.text ?? ""));
+              },
+            )
           ],
         ),
       ),

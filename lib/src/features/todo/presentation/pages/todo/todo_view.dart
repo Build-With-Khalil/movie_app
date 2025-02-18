@@ -2,24 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:movie_app/src/core/component/custom_icon.dart';
-import 'package:movie_app/src/core/utils/enum/enums.dart';
-import 'package:movie_app/src/features/todo/data/repositories/dialog_box.dart';
+import 'package:movie_app/src/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:movie_app/src/features/todo/presentation/widgets/todo_widget.dart';
 
 import '../../../../../core/routes/routes_name.dart';
-import '../../bloc/todo_bloc.dart';
 
-class TodoView extends StatelessWidget {
+class TodoView extends StatefulWidget {
   const TodoView({super.key});
 
   @override
+  State<TodoView> createState() => _TodoViewState();
+}
+
+class _TodoViewState extends State<TodoView> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<TodoBloc>().add(FetchTodoListEvent());
+  }
+
+  @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (timeStamp) {
-        // BlocProvider.of<TodoBloc>(context).add(FetchTodosListEvent());
-        context.read<TodoBloc>().add(FetchTodosListEvent());
-      },
-    );
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -39,63 +43,24 @@ class TodoView extends StatelessWidget {
       ),
       body: BlocBuilder<TodoBloc, TodoState>(
         builder: (context, state) {
-          switch (state.postAPIStatus) {
-            case PostAPIStatus.loading:
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-
-            case PostAPIStatus.error:
-              return Center(
-                child: Text(
-                  state.message.toString(),
-                  style: const TextStyle(color: Colors.red),
-                ),
-              );
-
-            case PostAPIStatus.success:
-              if (state.todoListModel.isEmpty) {
-                return const Center(
-                  child: Text("No Data Available"),
-                );
-              }
-              final todoList = state.todoListModel;
-              return RefreshIndicator(
-                onRefresh: () async {
-                  context.read<TodoBloc>().add(FetchTodosListEvent());
+          if (state.listLoader) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return RefreshIndicator(
+              onRefresh: () async {},
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return TodoWidget(
+                    onDeletePressed: () {},
+                    onEditPressed: () {},
+                    todo: state.todoList![index],
+                  );
                 },
-                child: Visibility(
-                  visible: todoList.isNotEmpty,
-                  replacement: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  child: ListView.builder(
-                    itemCount: todoList.length,
-                    itemBuilder: (context, index) {
-                      final todoItem = todoList[index];
-                      return TodoWidget(
-                        onDeletePressed: () {
-                          context.read<TodoBloc>().add(
-                                DeleteTodoEvent(
-                                  todoItem.id.toString(),
-                                ),
-                              );
-                        },
-                        onEditPressed: () => editTodoDialog(
-                          context,
-                          todoItem,
-                        ),
-                        id: "${index + 1}",
-                        title: todoItem.title.toString(),
-                        description: todoItem.description.toString(),
-                      );
-                    },
-                  ),
-                ),
-              );
-
-            default:
-              return const SizedBox.shrink();
+                itemCount: state.todoList?.length,
+              ),
+            );
           }
         },
       ),

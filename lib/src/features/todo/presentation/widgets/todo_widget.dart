@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:movie_app/src/core/utils/theme/theme_instances.dart';
+import 'package:movie_app/src/features/todo/data/models/todo_model.dart';
 
 class TodoWidget extends StatelessWidget {
   const TodoWidget({
     super.key,
     required this.onDeletePressed,
     required this.onEditPressed,
-    required this.id,
-    required this.title,
-    required this.description,
+    required this.todo,
   });
-  final String id, title, description;
+
+  final TodoListModel? todo;
   final VoidCallback onDeletePressed;
   final VoidCallback onEditPressed;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
         child: Text(
-          id,
+          todo?.id ?? "N/A",
         ),
       ),
       title: Text(
-        title,
+        todo?.title ?? "N/A",
         style: ThemeInstance(context).bodyLarge,
       ),
       subtitle: Text(
-        description,
+        todo?.description ?? "N/A",
         style: ThemeInstance(context).bodyMedium,
       ),
       trailing: SizedBox(

@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       style: Theme.of(context).textTheme.bodyLarge,
-      focusNode: focusNode,
+      // focusNode: focusNode,
       onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hintText,
