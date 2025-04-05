@@ -1,17 +1,11 @@
 part of 'movies_bloc.dart';
 
-abstract class MoviesEvent extends Equatable {
-  const MoviesEvent();
+abstract class TvShowsEvent extends Equatable {
+  const TvShowsEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-class MoviesFetchedEvent extends MoviesEvent {
-  final int page;
-
-  const MoviesFetchedEvent({this.page = 1});
-
-  @override
-  List<Object> get props => [page];
-}
+// Event to fetch shows
+class FetchShowsEvent extends TvShowsEvent {}

@@ -13,8 +13,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) {
-        BlocProvider.of<MoviesBloc>(context, listen: false).add(
-          MoviesFetchedEvent(page: 1),
+        BlocProvider.of<TvShowsBloc>(context).add(
+          FetchShowsEvent(),
         );
       },
     );
@@ -33,41 +33,32 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text('Home Screen'),
       ),
-      body: BlocBuilder<MoviesBloc, MoviesState>(
+      body: BlocBuilder<TvShowsBloc, TvShowsState>(
         builder: (context, state) {
-          switch (state.moviesModel.status) {
-            case PostAPIStatus.loading:
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            case PostAPIStatus.error:
-              return Center(
-                child: Text(
-                  state.moviesModel.message.toString(),
-                ),
-              );
-            case PostAPIStatus.success:
-              if (state.moviesModel.data == null ||
-                  state.moviesModel.data!.tvShows!.isEmpty) {
-                return const Center(child: Text('No TV shows available.'));
-              }
-              final tvShows = state.moviesModel.data!.tvShows;
-              return ListView.builder(
-                itemCount: tvShows!.length,
-                itemBuilder: (context, index) {
-                  final tvShow = tvShows[index];
-                  return ListTile(
-                    title: Text(tvShow.name.toString()),
-                    subtitle: Text(tvShow.network.toString()),
-                    leading:
-                        Image.network(tvShow.imageThumbnailPath.toString()),
-                  );
-                },
-              );
-            default:
-              return const SizedBox.shrink();
+          if (state.postAPIStatus == PostAPIStatus.loading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state.postAPIStatus == PostAPIStatus.success) {
+            return ListView.builder(
+              itemCount: state.tvShows.length,
+              itemBuilder: (context, index) {
+                final show = state.tvShows[index];
+                return Card(
+                  child: ListTile(
+                    leading: Image.network(show.imageThumbnailPath.toString()),
+                    title: Text(show.name.toString()),
+                  ),
+                );
+              },
+            );
+          } else if (state.postAPIStatus == PostAPIStatus.error) {
+            return Center(child: Text('Error: ${state.message}'));
           }
+          return const Center(child: Text('Press button to load shows'));
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.read<TvShowsBloc>().add(FetchShowsEvent()),
+        child: const Icon(Icons.download),
       ),
     );
   }
