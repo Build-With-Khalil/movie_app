@@ -1,14 +1,15 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:movie_app/src/features/auth_module/login/domain/entities/user_entity.dart';
 
-part 'user_model.freezed.dart';
-part 'user_model.g.dart';
+class UserModel extends UserEntity {
+  final String token;
 
-@freezed
-class UserModel with _$UserModel {
-  factory UserModel({
-    @Default('') String token,
-    @Default('') String error,
-  }) = _UserModel;
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
+  UserModel({required this.token}) : super(token: token);
+
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        token: json['token'] ?? '',
+      );
+
+  Map<String, dynamic> toJson() => {
+        'token': token,
+      };
 }

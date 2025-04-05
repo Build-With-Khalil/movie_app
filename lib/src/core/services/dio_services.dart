@@ -13,7 +13,10 @@ class DioService extends BaseClass {
   Future<Response> get(String path,
       {Map<String, dynamic>? queryParameters}) async {
     try {
-      final response = await dio.get(path, queryParameters: queryParameters);
+      final response = await dio.get(
+        path,
+        queryParameters: queryParameters,
+      );
       return response;
     } on DioException catch (e) {
       throw DioErrorHandler.handleError(e);
@@ -23,7 +26,10 @@ class DioService extends BaseClass {
   @override
   Future<Response> post(String path, dynamic data) async {
     try {
-      final response = await dio.post(path, data: data);
+      final response = await dio.post(
+        path,
+        data: data,
+      );
       return response;
     } on DioException catch (e) {
       throw DioErrorHandler.handleError(e);
@@ -33,7 +39,10 @@ class DioService extends BaseClass {
   @override
   Future<Response> put(String path, dynamic data) async {
     try {
-      final response = await dio.put(path, data: data);
+      final response = await dio.put(
+        path,
+        data: data,
+      );
       return response;
     } on DioException catch (e) {
       throw DioErrorHandler.handleError(e);
@@ -43,7 +52,9 @@ class DioService extends BaseClass {
   @override
   Future<Response> delete(String path) async {
     try {
-      final response = await dio.delete(path);
+      final response = await dio.delete(
+        path,
+      );
       return response;
     } on DioException catch (e) {
       throw DioErrorHandler.handleError(e);
