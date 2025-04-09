@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/src/core/utils/theme/theme_instances.dart';
 
-import '../../../../../core/component/round_button.dart';
+import '../../../../core/component/round_button.dart';
 
 class LogInButton extends StatelessWidget {
   const LogInButton({

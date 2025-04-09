@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/utils/constants/app_colors.dart';
-import '../../../../../core/utils/constants/app_string.dart';
-import '../../../../../core/utils/enum/enums.dart';
-import '../../../../../core/utils/theme/theme_instances.dart';
-import '../bloc/login_bloc.dart';
-import '../widgets/form.dart';
+import '../../../../core/utils/constants/app_colors.dart';
+import '../../../../core/utils/constants/app_string.dart';
+import '../../../../core/utils/enum/enums.dart';
+import '../../../../core/utils/theme/theme_instances.dart';
+import '../bloc/auth_bloc.dart';
+import '../widgets/login_form.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({
@@ -68,25 +68,25 @@ class LoginView extends StatelessWidget {
                   horizontal: width * 0.05,
                   vertical: height * 0.05,
                 ),
-                child: BlocListener<LoginBloc, LoginState>(
+                child: BlocListener<AuthBloc, AuthState>(
                   listener: (context, state) {
-                    if (state is LoginSuccess) {
+                    if (state is AuthSuccess) {
                       // Handle success (e.g., navigate to the next screen)
-                    } else if (state is LoginError) {
+                    } else if (state is AuthError) {
                       // Handle error
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(state.message)),
                       );
                     }
                   },
-                  child: BlocBuilder<LoginBloc, LoginState>(
+                  child: BlocBuilder<AuthBloc, AuthState>(
                     builder: (context, state) {
                       PostAPIStatus status = PostAPIStatus.initial;
-                      if (state is LoginLoading) {
+                      if (state is AuthLoading) {
                         status = state.postApiStatus;
-                      } else if (state is LoginSuccess) {
+                      } else if (state is AuthSuccess) {
                         status = state.postApiStatus;
-                      } else if (state is LoginError) {
+                      } else if (state is AuthError) {
                         status = state.postApiStatus;
                       }
                       return FormWidget(

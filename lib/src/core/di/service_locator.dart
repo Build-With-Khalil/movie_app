@@ -1,13 +1,13 @@
 import 'package:get_it/get_it.dart';
-import 'package:movie_app/src/features/home_module/home/data/data_source/tv_show_remote_data_source.dart';
-import 'package:movie_app/src/features/home_module/home/data/repositories/tv_shows_repository_impl.dart';
-import 'package:movie_app/src/features/home_module/home/domain/repository/tv_show_repository.dart';
-import 'package:movie_app/src/features/home_module/home/domain/use_case/get_tv_show_use_case.dart';
 
-import '../../features/auth_module/login/data/data_source/auth_remote_data_source.dart';
-import '../../features/auth_module/login/data/repository/auth_repository_impl.dart';
-import '../../features/auth_module/login/domain/repositories/auth_repository.dart';
-import '../../features/auth_module/login/domain/usecases/login_use_case.dart';
+import '../../features/auth_module/data/data_source/auth_remote_data_source.dart';
+import '../../features/auth_module/data/repository/auth_repository_impl.dart';
+import '../../features/auth_module/domain/repositories/auth_repository.dart';
+import '../../features/auth_module/domain/usecases/login_use_case.dart';
+import '../../features/home_module/home/data/data_source/tv_show_remote_data_source.dart';
+import '../../features/home_module/home/data/repositories/tv_shows_repository_impl.dart';
+import '../../features/home_module/home/domain/repository/tv_show_repository.dart';
+import '../../features/home_module/home/domain/use_case/get_tv_show_use_case.dart';
 
 final sl = GetIt.instance;
 

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/src/features/auth_module/login/presentation/widgets/email_text_form_field.dart';
-import 'package:movie_app/src/features/auth_module/login/presentation/widgets/login_button.dart';
-import 'package:movie_app/src/features/auth_module/login/presentation/widgets/password_text_form_field.dart';
-import 'package:movie_app/src/features/auth_module/login/presentation/widgets/sign_up_section.dart';
+import 'package:movie_app/src/features/auth_module/presentation/widgets/email_text_form_field.dart';
+import 'package:movie_app/src/features/auth_module/presentation/widgets/login_button.dart';
+import 'package:movie_app/src/features/auth_module/presentation/widgets/password_text_form_field.dart';
+import 'package:movie_app/src/features/auth_module/presentation/widgets/sign_up_section.dart';
 
-import '../../../../../core/utils/constants/app_string.dart';
-import '../../../../../core/utils/enum/enums.dart';
-import '../../../../../core/utils/theme/theme_instances.dart';
-import '../bloc/login_bloc.dart';
+import '../../../../core/utils/constants/app_string.dart';
+import '../../../../core/utils/enum/enums.dart';
+import '../../../../core/utils/theme/theme_instances.dart';
+import '../bloc/auth_bloc.dart';
 
 class FormWidget extends StatefulWidget {
   final double height;
@@ -65,7 +65,7 @@ class _FormWidgetState extends State<FormWidget> {
             height: widget.width,
             onPressed: () {
               if (formKey.currentState?.validate() ?? false) {
-                BlocProvider.of<LoginBloc>(context).add(
+                BlocProvider.of<AuthBloc>(context).add(
                   LoginRequested(
                     email: emailController.text,
                     password: passwordController.text,

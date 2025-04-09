@@ -1,23 +1,23 @@
-part of 'login_bloc.dart';
+part of 'auth_bloc.dart';
 
-// abstract class LoginEvent extends Equatable {
-//   const LoginEvent();
+// abstract class AuthEvent extends Equatable {
+//   const AuthEvent();
 //
 //   @override
 //   List<Object> get props => [];
 // }
 //
-// class LoginRequested extends LoginEvent {
+// class AuthRequested extends AuthEvent {
 //   final String email;
 //   final String password;
 //
-//   const LoginRequested({required this.email, required this.password});
+//   const AuthRequested({required this.email, required this.password});
 //
 //   @override
 //   List<Object> get props => [email, password];
 // }
 //
-// class EmailChanged extends LoginEvent {
+// class EmailChanged extends AuthEvent {
 //   final String email;
 //
 //   const EmailChanged({
@@ -28,9 +28,9 @@ part of 'login_bloc.dart';
 //   List<Object> get props => [email];
 // }
 //
-// class EmailUnfocused extends LoginEvent {}
+// class EmailUnfocused extends AuthEvent {}
 //
-// class PasswordChanged extends LoginEvent {
+// class PasswordChanged extends AuthEvent {
 //   final String password;
 //
 //   const PasswordChanged({
@@ -41,18 +41,18 @@ part of 'login_bloc.dart';
 //   List<Object> get props => [password];
 // }
 //
-// class PasswordUnfocused extends LoginEvent {}
+// class PasswordUnfocused extends AuthEvent {}
 //
-// class VisibleEye extends LoginEvent {}
+// class VisibleEye extends AuthEvent {}
 //
-// class LoginApiCall extends LoginEvent {}
+// class AuthApiCall extends AuthEvent {}
 
-abstract class LoginEvent extends Equatable {
+abstract class AuthEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-class LoginRequested extends LoginEvent {
+class LoginRequested extends AuthEvent {
   final String email;
   final String password;
 

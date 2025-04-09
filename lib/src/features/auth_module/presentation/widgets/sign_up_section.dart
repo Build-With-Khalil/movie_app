@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/constants/app_colors.dart';
-import '../../../../../core/utils/constants/app_string.dart';
-import '../../../../../core/utils/theme/theme_instances.dart';
+import '../../../../core/utils/constants/app_colors.dart';
+import '../../../../core/utils/constants/app_string.dart';
+import '../../../../core/utils/theme/theme_instances.dart';
 
 class SignUpSection extends StatelessWidget {
   const SignUpSection({

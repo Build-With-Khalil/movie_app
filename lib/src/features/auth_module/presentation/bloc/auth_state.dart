@@ -1,13 +1,13 @@
-part of 'login_bloc.dart';
+part of 'auth_bloc.dart';
 
 //
-// class LoginState extends Equatable {
+// class AuthState extends Equatable {
 //   final String email, password, message;
 //   final PostAPIStatus postApiStatus;
 //   final bool isObscure;
 //   final UserEntity user;
 //
-//   const LoginState(
+//   const AuthState(
 //     this.user, {
 //     this.email = '',
 //     this.password = '',
@@ -16,7 +16,7 @@ part of 'login_bloc.dart';
 //     this.postApiStatus = PostAPIStatus.initial,
 //   });
 //
-//   LoginState copyWith({
+//   AuthState copyWith({
 //     String? email,
 //     String? password,
 //     String? message,
@@ -24,7 +24,7 @@ part of 'login_bloc.dart';
 //     PostAPIStatus? postApiStatus,
 //     UserEntity? user,
 //   }) {
-//     return LoginState(
+//     return AuthState(
 //       user ?? this.user,
 //       email: email ?? this.email,
 //       password: password ?? this.password,
@@ -45,52 +45,63 @@ part of 'login_bloc.dart';
 //       ];
 // }
 //
-// class LoginLoading extends LoginState {
-//   const LoginLoading(super.user);
+// class AuthLoading extends AuthState {
+//   const AuthLoading(super.user);
 // }
 
-abstract class LoginState extends Equatable {
+abstract class AuthState extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-class LoginInitial extends LoginState {
+class AuthInitial extends AuthState {
   final PostAPIStatus postApiStatus;
 
-  LoginInitial({this.postApiStatus = PostAPIStatus.initial});
+  AuthInitial({
+    this.postApiStatus = PostAPIStatus.initial,
+  });
 
-  LoginInitial copyWith({PostAPIStatus? postApiStatus}) {
-    return LoginInitial(postApiStatus: postApiStatus ?? this.postApiStatus);
+  AuthInitial copyWith({
+    PostAPIStatus? postApiStatus,
+  }) {
+    return AuthInitial(postApiStatus: postApiStatus ?? this.postApiStatus);
   }
 
   @override
   List<Object?> get props => [postApiStatus];
 }
 
-class LoginLoading extends LoginState {
+class AuthLoading extends AuthState {
   final PostAPIStatus postApiStatus;
 
-  LoginLoading({this.postApiStatus = PostAPIStatus.loading});
+  AuthLoading({
+    this.postApiStatus = PostAPIStatus.loading,
+  });
 
-  LoginLoading copyWith({PostAPIStatus? postApiStatus}) {
-    return LoginLoading(postApiStatus: postApiStatus ?? this.postApiStatus);
+  AuthLoading copyWith({PostAPIStatus? postApiStatus}) {
+    return AuthLoading(
+      postApiStatus: postApiStatus ?? this.postApiStatus,
+    );
   }
 
   @override
   List<Object?> get props => [postApiStatus];
 }
 
-class LoginSuccess extends LoginState {
+class AuthSuccess extends AuthState {
   final String token;
   final PostAPIStatus postApiStatus;
 
-  LoginSuccess({this.token = '', this.postApiStatus = PostAPIStatus.success});
+  AuthSuccess({
+    this.token = '',
+    this.postApiStatus = PostAPIStatus.success,
+  });
 
-  LoginSuccess copyWith({
+  AuthSuccess copyWith({
     String? token,
     PostAPIStatus? postApiStatus,
   }) {
-    return LoginSuccess(
+    return AuthSuccess(
       token: token ?? this.token,
       postApiStatus: postApiStatus ?? this.postApiStatus,
     );
@@ -103,17 +114,20 @@ class LoginSuccess extends LoginState {
       ];
 }
 
-class LoginError extends LoginState {
+class AuthError extends AuthState {
   final String message;
   final PostAPIStatus postApiStatus;
 
-  LoginError({this.message = '', this.postApiStatus = PostAPIStatus.error});
+  AuthError({
+    this.message = '',
+    this.postApiStatus = PostAPIStatus.error,
+  });
 
-  LoginError copyWith({
+  AuthError copyWith({
     String? message,
     PostAPIStatus? postApiStatus,
   }) {
-    return LoginError(
+    return AuthError(
       message: message ?? this.message,
       postApiStatus: postApiStatus ?? this.postApiStatus,
     );

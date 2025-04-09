@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../../core/component/custom_icon.dart';
-import '../../../../../core/component/custom_text_form_field.dart';
-import '../../../../../core/utils/constants/app_colors.dart';
-import '../../../../../core/utils/constants/app_string.dart';
-import '../../../../../core/utils/theme/theme_instances.dart';
-import '../../../../../core/utils/validation/validation.dart';
+import '../../../../core/component/custom_icon.dart';
+import '../../../../core/component/custom_text_form_field.dart';
+import '../../../../core/utils/constants/app_colors.dart';
+import '../../../../core/utils/constants/app_string.dart';
+import '../../../../core/utils/theme/theme_instances.dart';
+import '../../../../core/utils/validation/validation.dart';
 
 class PasswordTextFormField extends StatefulWidget {
   final TextEditingController passwordController;
