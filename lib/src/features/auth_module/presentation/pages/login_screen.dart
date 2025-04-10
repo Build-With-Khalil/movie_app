@@ -70,23 +70,27 @@ class LoginView extends StatelessWidget {
                 ),
                 child: BlocListener<AuthBloc, AuthState>(
                   listener: (context, state) {
-                    if (state is AuthSuccess) {
-                      // Handle success (e.g., navigate to the next screen)
-                    } else if (state is AuthError) {
+                    if (state.postApiStatus == PostAPIStatus.loading) {
+                      Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (state.postApiStatus == PostAPIStatus.error) {
                       // Handle error
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.message)),
+                        SnackBar(
+                          content: Text(state.message),
+                        ),
                       );
                     }
                   },
                   child: BlocBuilder<AuthBloc, AuthState>(
                     builder: (context, state) {
                       PostAPIStatus status = PostAPIStatus.initial;
-                      if (state is AuthLoading) {
+                      if (state.postApiStatus == PostAPIStatus.loading) {
                         status = state.postApiStatus;
-                      } else if (state is AuthSuccess) {
+                      } else if (state.postApiStatus == PostAPIStatus.error) {
                         status = state.postApiStatus;
-                      } else if (state is AuthError) {
+                      } else if (state.postApiStatus == PostAPIStatus.success) {
                         status = state.postApiStatus;
                       }
                       return FormWidget(

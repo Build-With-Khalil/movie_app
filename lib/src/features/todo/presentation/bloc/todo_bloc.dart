@@ -4,8 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:movie_app/main.dart';
-import 'package:movie_app/src/features/todo/data/models/todo_model.dart';
-import 'package:movie_app/src/features/todo/data/repositories/todo_repository.dart';
+
+import '../../data/models/todo_model.dart';
+import '../../data/repositories/todo_repository.dart';
 
 part 'todo_event.dart';
 part 'todo_state.dart';

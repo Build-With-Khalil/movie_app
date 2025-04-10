@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/src/core/di/service_locator.dart' as di;
 import 'package:movie_app/src/core/routes/routes.dart';
 import 'package:movie_app/src/core/routes/routes_name.dart';
-import 'package:movie_app/src/features/auth_module/login/domain/usecases/login_use_case.dart';
-import 'package:movie_app/src/features/auth_module/login/presentation/bloc/auth_bloc.dart';
+import 'package:movie_app/src/features/auth_module/domain/usecases/login_use_case.dart';
+import 'package:movie_app/src/features/auth_module/domain/usecases/sign_up_use_case.dart';
+import 'package:movie_app/src/features/auth_module/presentation/bloc/auth_bloc.dart';
 import 'package:movie_app/src/features/home_module/home/domain/use_case/get_tv_show_use_case.dart';
 import 'package:movie_app/src/features/home_module/home/presentation/bloc/movies_bloc.dart';
 import 'package:movie_app/src/features/todo/presentation/bloc/todo_bloc.dart';
@@ -26,8 +27,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => LoginBloc(
+          create: (context) => AuthBloc(
             di.sl<LoginUseCase>(),
+            di.sl<SignUpUseCase>(),
           ),
         ),
         BlocProvider(

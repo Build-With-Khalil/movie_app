@@ -1,14 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_app/main.dart';
-import 'package:movie_app/src/features/auth_module/domain/entities/login_entity.dart';
-import 'package:movie_app/src/features/auth_module/domain/usecases/sign_up_use_case.dart';
 
 import '../../../../core/failure/failure.dart';
 import '../../../../core/params/login_params.dart';
+import '../../../../core/params/sign_up_params.dart';
 import '../../../../core/routes/routes_name.dart';
 import '../../../../core/utils/enum/enums.dart';
+import '../../domain/entities/login_entity.dart';
+import '../../domain/entities/sign_up_entity.dart';
 import '../../domain/usecases/login_use_case.dart';
+import '../../domain/usecases/sign_up_use_case.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -19,18 +21,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc(this.loginUseCase, this.signUpUseCase)
       : super(
-          AuthInitial(
+          AuthState(
             postApiStatus: PostAPIStatus.initial,
           ),
         ) {
     on<LoginRequested>(onLoginRequested);
+    on<SignUpRequested>(onSignUpRequested);
   }
 
   void onLoginRequested(LoginRequested event, Emitter<AuthState> emit) async {
     emit(
-      AuthLoading(
-        postApiStatus: PostAPIStatus.loading,
-      ),
+      state.copyWith(postApiStatus: PostAPIStatus.loading),
     );
     final result = await loginUseCase(
       LoginParams(
@@ -41,20 +42,55 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     result.fold(
       (Failure failure) {
         emit(
-          AuthError(
+          state.copyWith(
             message: failure.message,
             postApiStatus: PostAPIStatus.error,
           ),
         );
       },
       (LoginEntity userEntity) {
+        emit(state.copyWith(
+          postApiStatus: PostAPIStatus.success,
+          token: userEntity.token,
+        ));
+        navigatorKey.currentState?.pushNamed(RoutesName.home);
+      },
+    );
+  }
+
+  void onSignUpRequested(
+    SignUpRequested event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(
+      state.copyWith(postApiStatus: PostAPIStatus.loading),
+    );
+    final result = await signUpUseCase(
+      SignUpParams(
+        name: event.name,
+        surName: event.surName,
+        email: event.email,
+        phoneNumber: event.phoneNumber,
+        password: event.password,
+      ),
+    );
+    result.fold(
+      (Failure failure) {
         emit(
-          AuthSuccess(
-            token: userEntity.token!,
-            postApiStatus: PostAPIStatus.success,
+          state.copyWith(
+            postApiStatus: PostAPIStatus.error,
+            message: failure.message,
           ),
         );
-        navigatorKey.currentState?.pushNamed(RoutesName.home);
+      },
+      (SignUpEntity userEntity) {
+        emit(
+          state.copyWith(
+            postApiStatus: PostAPIStatus.success,
+            token: userEntity.token,
+          ),
+        );
+        navigatorKey.currentState?.pushNamed(RoutesName.login);
       },
     );
   }

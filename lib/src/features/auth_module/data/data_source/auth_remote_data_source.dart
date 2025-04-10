@@ -64,9 +64,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
     try {
       final response = await dio.post(
-        AppUrls.endPoint1,
+        AppUrls.endPoint2,
         {
+          'name': name,
+          'surName': surName,
           'email': email,
+          'phoneNumber': phoneNumber,
           'password': password,
         },
       );

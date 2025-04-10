@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/src/core/utils/theme/theme_instances.dart';
 
 import '../../../../core/component/round_button.dart';
+import '../../../../core/utils/theme/theme_instances.dart';
 
-class LogInButton extends StatelessWidget {
-  const LogInButton({
+class FormButton extends StatelessWidget {
+  const FormButton({
     super.key,
     required this.height,
     required this.width,
     required this.onPressed,
     required this.isLoading,
+    required this.text,
   });
 
+  final String text;
   final double height, width;
   final void Function() onPressed;
   final bool isLoading;
@@ -26,7 +28,7 @@ class LogInButton extends StatelessWidget {
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ) // Show loader when loading
           : Text(
-              'Login',
+              text,
               style: ThemeInstance(context).headlineSmall!.apply(
                     color: Colors.white,
                   ),

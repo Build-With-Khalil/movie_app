@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/src/features/auth_module/presentation/widgets/email_text_form_field.dart';
-import 'package:movie_app/src/features/auth_module/presentation/widgets/login_button.dart';
+import 'package:movie_app/src/features/auth_module/presentation/widgets/form_button.dart';
+import 'package:movie_app/src/features/auth_module/presentation/widgets/form_section.dart';
 import 'package:movie_app/src/features/auth_module/presentation/widgets/password_text_form_field.dart';
-import 'package:movie_app/src/features/auth_module/presentation/widgets/sign_up_section.dart';
 
 import '../../../../core/utils/constants/app_string.dart';
 import '../../../../core/utils/enum/enums.dart';
@@ -60,7 +60,7 @@ class _FormWidgetState extends State<FormWidget> {
           SizedBox(height: widget.height * 0.02),
 
           /// Sign In Button
-          LogInButton(
+          FormButton(
             width: widget.width,
             height: widget.width,
             onPressed: () {
@@ -73,13 +73,17 @@ class _FormWidgetState extends State<FormWidget> {
                 );
               }
             },
-            isLoading: widget.status ==
-                PostAPIStatus.loading, // Pass the loading status
+            isLoading: widget.status == PostAPIStatus.loading,
+            text: AppStrings.signIn, // Pass the loading status
           ),
           SizedBox(height: widget.height * 0.02),
 
           /// Sign Up Section
-          SignUpSection(height: widget.height),
+          FormSection(
+            height: widget.height,
+            text1: AppStrings.doNotHaveAnAcc,
+            text2: AppStrings.signUp,
+          ),
         ],
       ),
     );
