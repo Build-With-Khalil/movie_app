@@ -2,8 +2,8 @@ part of 'auth_bloc.dart';
 
 class AuthState extends Equatable {
   final PostAPIStatus postApiStatus;
-  final String token;
   final String message;
+  final String token;
 
   const AuthState({
     this.token = '',

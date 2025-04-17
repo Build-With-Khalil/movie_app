@@ -1,9 +1,7 @@
 import '../../../domain/entities/login_entity.dart';
 
 class LoginModel extends LoginEntity {
-  final String token;
-
-  LoginModel({required this.token}) : super(token: token);
+  const LoginModel({required super.token});
 
   factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
         token: json['token'] ?? '',

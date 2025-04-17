@@ -56,7 +56,7 @@ class ProductModel {
         discountPercentage: json['discountPercentage'] ?? 0.0,
         rating: json['rating'] ?? 0.0,
         stock: json['stock'] ?? 0,
-        tags: (json['tags'] as List<dynamic>?)?.cast<String>() ?? [],
+        tags: json['tags'] ?? [],
         brand: json['brand'] ?? '',
         sku: json['sku'] ?? '',
         weight: json['weight'] ?? 0,
@@ -73,7 +73,7 @@ class ProductModel {
         returnPolicy: json['returnPolicy'] ?? '',
         minimumOrderQuantity: json['minimumOrderQuantity'] ?? 0,
         meta: json['meta'] != null ? Meta.fromJson(json['meta']) : null,
-        images: (json['images'] as List<dynamic>?)?.cast<String>() ?? [],
+        images: json['images'] ?? [],
         thumbnail: json['thumbnail'] ?? '',
       );
 }

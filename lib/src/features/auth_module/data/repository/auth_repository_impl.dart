@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/src/features/auth_module/domain/entities/sign_up_entity.dart';
 
 import '../../../../core/failure/failure.dart';
 import '../../domain/entities/login_entity.dart';
+import '../../domain/entities/sign_up_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../data_source/auth_remote_data_source.dart';
 

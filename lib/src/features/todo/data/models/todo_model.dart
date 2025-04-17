@@ -1,22 +1,28 @@
-class TodoListModel {
-  final String? title;
-  final String? description;
-  final bool? isCompleted;
-  final String? id;
+import '../../domain/entities/todo_entity.dart';
 
-  TodoListModel({
-    this.title,
-    this.description,
-    this.isCompleted,
-    this.id,
+class TodoListModel extends TodoListEntity {
+  const TodoListModel({
+    super.id,
+    super.title,
+    super.description,
+    super.isCompleted,
   });
 
   factory TodoListModel.fromJson(Map<String, dynamic> json) => TodoListModel(
+        id: json['id'] ?? '',
         title: json['title'] ?? '',
         description: json['description'] ?? '',
-        isCompleted: json['is_completed'] ?? false,
-        id: json['id'] ?? '',
+        isCompleted: json['is_completed'] ?? true,
       );
+
+  factory TodoListModel.fromEntity(TodoListEntity entity) {
+    return TodoListModel(
+      id: entity.id,
+      title: entity.title,
+      description: entity.description,
+      isCompleted: entity.isCompleted,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'title': title,

@@ -36,7 +36,12 @@ class MyApp extends StatelessWidget {
           create: (context) => TvShowsBloc(di.sl<GetTvShowsUseCase>()),
         ),
         BlocProvider(
-          create: (context) => TodoBloc(),
+          create: (context) => TodoBloc(
+            di.sl(),
+            di.sl(),
+            di.sl(),
+            di.sl(),
+          ),
         ),
       ],
       child: MaterialApp(

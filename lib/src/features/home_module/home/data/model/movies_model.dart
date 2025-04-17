@@ -29,48 +29,28 @@ class MovieModel {
 }
 
 class TvShowsModel extends TvShowsEntity {
-  final int? id;
-  final String? name;
-  final String? permalink;
-  final String? startDate;
-  final String? endDate;
-  final String? country;
-  final String? network;
-  final String? status;
-  final String? imageThumbnailPath;
-
-  const TvShowsModel(
-    this.id,
-    this.name,
-    this.permalink,
-    this.startDate,
-    this.endDate,
-    this.country,
-    this.network,
-    this.status,
-    this.imageThumbnailPath,
-  ) : super(
-          id,
-          name,
-          permalink,
-          startDate,
-          endDate,
-          country,
-          network,
-          status,
-          imageThumbnailPath,
-        );
+  const TvShowsModel({
+    super.id,
+    super.name,
+    super.permalink,
+    super.startDate,
+    super.endDate,
+    super.country,
+    super.network,
+    super.status,
+    super.imageThumbnailPath,
+  });
 
   factory TvShowsModel.fromJson(Map<String, dynamic> json) => TvShowsModel(
-        json['id'] ?? 0,
-        json['name'] ?? '',
-        json['permalink'] ?? '',
-        json['start_date'] ?? '',
-        json['end_date'] ?? '',
-        json['country'] ?? '',
-        json['network'] ?? '',
-        json['status'] ?? '',
-        json['image_thumbnail_path'] ?? '',
+        id: json['id'] ?? 0,
+        name: json['name'] ?? '',
+        permalink: json['permalink'] ?? '',
+        startDate: json['start_date'] ?? '',
+        endDate: json['end_date'] ?? '',
+        country: json['country'] ?? '',
+        network: json['network'] ?? '',
+        status: json['status'] ?? '',
+        imageThumbnailPath: json['image_thumbnail_path'] ?? '',
       );
 
   Map<String, dynamic> toJson() => {

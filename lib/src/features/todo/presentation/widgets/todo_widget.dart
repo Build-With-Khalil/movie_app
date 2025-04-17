@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:movie_app/src/core/utils/theme/theme_instances.dart';
-import 'package:movie_app/src/features/todo/data/models/todo_model.dart';
+import 'package:movie_app/src/features/todo/domain/entities/todo_entity.dart';
 
 class TodoWidget extends StatelessWidget {
   const TodoWidget({
@@ -9,9 +9,11 @@ class TodoWidget extends StatelessWidget {
     required this.onDeletePressed,
     required this.onEditPressed,
     required this.todo,
+    required this.id,
   });
 
-  final TodoListModel? todo;
+  final String id;
+  final TodoListEntity todo;
   final VoidCallback onDeletePressed;
   final VoidCallback onEditPressed;
 
@@ -20,15 +22,16 @@ class TodoWidget extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
         child: Text(
-          todo?.id ?? "N/A",
+          id,
+          style: ThemeInstance(context).bodyMedium,
         ),
       ),
       title: Text(
-        todo?.title ?? "N/A",
+        todo.title ?? "N/A",
         style: ThemeInstance(context).bodyLarge,
       ),
       subtitle: Text(
-        todo?.description ?? "N/A",
+        todo.description ?? "N/A",
         style: ThemeInstance(context).bodyMedium,
       ),
       trailing: SizedBox(

@@ -11,7 +11,7 @@ class TvShowsEntity extends Equatable {
   final String? status;
   final String? imageThumbnailPath;
 
-  const TvShowsEntity(
+  const TvShowsEntity({
     this.id,
     this.name,
     this.permalink,
@@ -21,7 +21,7 @@ class TvShowsEntity extends Equatable {
     this.network,
     this.status,
     this.imageThumbnailPath,
-  );
+  });
 
   @override
   List<Object?> get props => [

@@ -6,6 +6,7 @@ import '../../../../core/failure/failure.dart';
 import '../../../../core/params/login_params.dart';
 import '../../../../core/params/sign_up_params.dart';
 import '../../../../core/routes/routes_name.dart';
+import '../../../../core/services/storage/token_storage.dart';
 import '../../../../core/utils/enum/enums.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/entities/sign_up_entity.dart';
@@ -53,7 +54,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           postApiStatus: PostAPIStatus.success,
           token: userEntity.token,
         ));
-        navigatorKey.currentState?.pushNamed(RoutesName.home);
+        TokenStorage.setToken(userEntity.token.toString());
+        navigatorKey.currentState?.pushNamed(RoutesName.todoView);
       },
     );
   }
@@ -86,6 +88,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (SignUpEntity userEntity) {
         emit(
           state.copyWith(
+            message: '',
             postApiStatus: PostAPIStatus.success,
             token: userEntity.token,
           ),

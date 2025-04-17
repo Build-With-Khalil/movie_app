@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:movie_app/src/features/todo/presentation/bloc/todo_bloc.dart';
 
 import '../../../../../core/component/round_button.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/theme/theme_instances.dart';
+import '../../bloc/todo_bloc.dart';
 import '../../widgets/custom_text_field.dart';
 
 class AddTodoView extends StatefulWidget {
@@ -30,7 +30,10 @@ class _AddTodoViewState extends State<AddTodoView> {
             Iconsax.arrow_left_1,
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+            context.read<TodoBloc>().add(FetchTodoListEvent());
+          },
         ),
         title: Text(
           'Add Todo',
@@ -67,9 +70,12 @@ class _AddTodoViewState extends State<AddTodoView> {
                     ),
               ),
               onPressed: () {
-                context.read<TodoBloc>().add(AddTodoEvent(
-                    title: titleController.text ?? "",
-                    description: descriptionController.text ?? ""));
+                context.read<TodoBloc>().add(
+                      AddTodoEvent(
+                        title: titleController.text ?? '',
+                        description: descriptionController.text ?? '',
+                      ),
+                    );
               },
             )
           ],

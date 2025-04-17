@@ -14,7 +14,7 @@ class SplashService {
       () {
         if (token != null && token.isNotEmpty) {
           /// If token exists, navigate to home screen
-          Navigator.pushNamed(context, RoutesName.login);
+          Navigator.pushNamed(context, RoutesName.todoView);
         } else {
           /// If no token exists, navigate to login screen
           Navigator.pushNamed(context, RoutesName.login);
